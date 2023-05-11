@@ -28,26 +28,30 @@ class HomeViewModel extends ReactiveViewModel {
   // the current device connectivity status
   BluetoothState get bluetoothState => _bluetoothService.bluetoothState;
   void bluetoothEnableDisable() async {
-    if (!bluetoothState.isEnabled) {
-      // Enable Bluetooth
-      await FlutterBluetoothSerial.instance.requestEnable();
-      log.i('Enable');
-    } else {
-      // Disable Bluetooth
-      await FlutterBluetoothSerial.instance.requestDisable();
-      log.i('Disable');
-    }
+    // if (!bluetoothState.isEnabled) {
+    //   // Enable Bluetooth
+    //   await FlutterBluetoothSerial.instance.requestEnable();
+    //   log.i('Enable');
+    // } else {
+    //   // Disable Bluetooth
+    //   await FlutterBluetoothSerial.instance.requestDisable();
+    //   log.i('Disable');
+    // }
 
-    // In order to update the devices list
-    await _bluetoothService.getPairedDevices();
+    try {
+      // In order to update the devices list
+      await _bluetoothService.getPairedDevices();
+    } catch (e) {
+      log.i(e);
+    }
     // _isButtonUnavailable = false;
 
     // Disconnect from any device before
     // turning off Bluetooth
-    if (connected) {
-      disconnect();
-    }
-
+    // if (connected) {
+    //   disconnect();
+    // }
+    //
     notifyListeners();
   }
 
@@ -88,17 +92,5 @@ class HomeViewModel extends ReactiveViewModel {
 
   void openSerialView() {
     _navigationService.navigateTo(Routes.serialView);
-  }
-
-  void openLedView() {
-    _navigationService.navigateTo(Routes.ledView);
-  }
-
-  void openInputView() {
-    _navigationService.navigateTo(Routes.inputView);
-  }
-
-  void openRobotView() {
-    _navigationService.navigateTo(Routes.robotView);
   }
 }

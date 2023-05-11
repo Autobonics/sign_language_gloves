@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -5,10 +7,13 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
 import '../../../services/bluetooth_service.dart';
+import '../../../services/tts_service.dart';
 import '../../setup_snackbar_ui.dart';
 
 class SerialViewModel extends ReactiveViewModel {
   final log = getLogger('HomeViewModel');
+
+  final TTSService _ttsService = locator<TTSService>();
 
   final _bluetoothService = locator<BluetoothService>();
   final _snackBarService = locator<SnackbarService>();
@@ -23,6 +28,15 @@ class SerialViewModel extends ReactiveViewModel {
     if (_bluetoothService.connection != null &&
         _bluetoothService.connection!.isConnected) {
       // _bluetoothService.setupListener();
+    }
+    setTimer();
+  }
+
+  String? _speechText;
+  void speakText() async {
+    if (connected && data != _speechText && data != "") {
+      _speechText = data;
+      await _ttsService.speak(_speechText!);
     }
   }
 
@@ -52,5 +66,23 @@ class SerialViewModel extends ReactiveViewModel {
       _snackBarService.showCustomSnackBar(
           variant: SnackbarType.error, message: 'No input');
     }
+  }
+
+  late Timer timer;
+
+  void setTimer() {
+    const oneSec = const Duration(seconds: 1);
+    timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        speakText();
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 }

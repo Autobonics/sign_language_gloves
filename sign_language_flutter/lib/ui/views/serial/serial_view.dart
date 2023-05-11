@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../app/constants.dart';
 import 'serial_viewmodel.dart';
 
 class SerialView extends StatelessWidget {
@@ -14,7 +15,8 @@ class SerialView extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
             appBar: AppBar(
-              title: const Text('Serial communication'),
+              backgroundColor: kPrimaryColor,
+              title: const Text('Gloves communication'),
               actions: [
                 Row(
                   children: [
@@ -86,7 +88,7 @@ class _HomeBody extends ViewModelWidget<SerialViewModel> {
                         maxHeight: MediaQuery.of(context).size.height * 0.35),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.2),
+                        color: kPrimaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Padding(
@@ -119,44 +121,44 @@ class _HomeBody extends ViewModelWidget<SerialViewModel> {
             ),
           ),
         ),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    onChanged: model.onMessage,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter message to send',
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0.0),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 14.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.teal,
-                        borderRadius: BorderRadius.circular(100)),
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 5.0, top: 2, bottom: 2),
-                      child: IconButton(
-                          onPressed: model.send,
-                          icon: const Icon(
-                            Icons.send_rounded,
-                            color: Colors.white,
-                          )),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+        // Card(
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(16.0),
+        //     child: Row(
+        //       children: [
+        //         Expanded(
+        //           child: TextField(
+        //             onChanged: model.onMessage,
+        //             decoration: const InputDecoration(
+        //               hintText: 'Enter message to send',
+        //               border: OutlineInputBorder(
+        //                 borderSide: BorderSide(color: Colors.grey, width: 0.0),
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //         Padding(
+        //           padding: const EdgeInsets.only(left: 14.0),
+        //           child: Container(
+        //             decoration: BoxDecoration(
+        //                 color: Colors.blueGrey,
+        //                 borderRadius: BorderRadius.circular(100)),
+        //             child: Padding(
+        //               padding:
+        //                   const EdgeInsets.only(left: 5.0, top: 2, bottom: 2),
+        //               child: IconButton(
+        //                   onPressed: model.send,
+        //                   icon: const Icon(
+        //                     Icons.send_rounded,
+        //                     color: Colors.white,
+        //                   )),
+        //             ),
+        //           ),
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

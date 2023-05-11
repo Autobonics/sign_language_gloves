@@ -13,13 +13,12 @@ class StartupView extends StatelessWidget {
       viewModelBuilder: () => StartupViewModel(),
       onModelReady: (model) => model.handleStartupLogic(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: kPrimaryColor,
         body: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                'assets/robo.png',
+                'assets/logo.png',
                 height: 250,
               )
             ],

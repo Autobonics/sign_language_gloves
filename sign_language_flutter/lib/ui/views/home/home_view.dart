@@ -3,6 +3,7 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../app/constants.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,7 +16,8 @@ class HomeView extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
             appBar: AppBar(
-              title: const Text('sign_language_recognition 2.0 Robotics'),
+              backgroundColor: kPrimaryColor,
+              title: const Text('Sign Gloves'),
               actions: [
                 IconButton(
                     onPressed: model.bluetoothEnableDisable,
@@ -114,33 +116,10 @@ class _HomeBody extends ViewModelWidget<HomeViewModel> {
             ),
           ),
         ),
-        Expanded(
-          child: GridView.count(
-            crossAxisCount: 2,
-            children: [
-              Option(
-                  name: 'Communication',
-                  onTap: model.openSerialView,
-                  file: 'assets/code.json'),
-              Option(
-                  name: 'LED Control',
-                  onTap: model.openLedView,
-                  file: 'assets/led.json'),
-              Option(
-                  name: 'Digital Read',
-                  onTap: model.openInputView,
-                  file: 'assets/input.json'),
-              Option(
-                  name: 'Robot Control',
-                  onTap: model.openRobotView,
-                  file: 'assets/robot.json'),
-              Option(
-                  name: 'Face recognition',
-                  onTap: model.openRobotView,
-                  file: 'assets/face.json'),
-            ],
-          ),
-        )
+        Option(
+            name: 'Communication',
+            onTap: model.openSerialView,
+            file: 'assets/code.json')
       ],
     );
   }
@@ -184,7 +163,7 @@ class Option extends StatelessWidget {
                     right: 0,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.teal.withOpacity(0.5),
+                          color: kPrimaryColor.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(6)),
                       child: Center(
                         child: Padding(

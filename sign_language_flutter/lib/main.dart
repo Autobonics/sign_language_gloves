@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Montserrat',
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.blueGrey,
         backgroundColor: kBackgroundColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

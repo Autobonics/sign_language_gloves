@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:stacked/stacked.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../app/app.logger.dart';
 
@@ -39,7 +40,7 @@ class BluetoothService with ReactiveServiceMixin {
     // If the Bluetooth of the device is not enabled,
     // then request permission to turn on Bluetooth
     // as the app starts up
-    enableBluetooth();
+    // enableBluetooth();
 
     // Listen for further state changes
     FlutterBluetoothSerial.instance
@@ -76,8 +77,20 @@ class BluetoothService with ReactiveServiceMixin {
   List<BluetoothDevice> _devicesList = [];
   List<BluetoothDevice> get devicesList => _devicesList;
   Future<void> getPairedDevices() async {
-    List<BluetoothDevice> devices = [];
+    PermissionStatus status = await Permission.bluetooth.request();
+    if (status.isGranted) {
+      // Permissions granted, proceed with Bluetooth functionality
+      // ...
+      log.i("Granted");
+    } else {
+      // Permissions not granted, handle accordingly
+      // ...
+      log.i("Denied");
+      return;
+    }
 
+    log.i("Getting gpaired devieces");
+    List<BluetoothDevice> devices = [];
     // To get the list of paired devices
     try {
       devices = await _bluetooth.getBondedDevices();

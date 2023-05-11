@@ -10,6 +10,7 @@ import 'package:stacked_core/stacked_core.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../services/bluetooth_service.dart';
+import '../services/tts_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -24,4 +25,5 @@ Future<void> setupLocator(
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerSingleton(BluetoothService());
+  locator.registerLazySingleton(() => TTSService());
 }
