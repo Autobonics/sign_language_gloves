@@ -20,34 +20,34 @@ int ymin = 1500;
 
 int FLEX_PIN1 = 34; 
 int flexADC1 = 0; 
-int sensorMin1 = 4090; 
-int sensorMax1 = 4095;
+int sensorMin1 = 3000; 
+int sensorMax1 = 4000;
 
 int FLEX_PIN2 = 35; 
 int flexADC2 = 0; 
-int sensorMin2 = 3600; 
-int sensorMax2 = 4095;
+int sensorMin2 = 1370; 
+int sensorMax2 = 1760;
 
-int FLEX_PIN3 = 33; 
+int FLEX_PIN3 = 32; 
 int flexADC3 = 0; 
-int sensorMin3 = 3600; 
-int sensorMax3 = 4095;
+int sensorMin3 = 1150; 
+int sensorMax3 = 1600;
 
-int FLEX_PIN4 = 32; 
+int FLEX_PIN4 = 33; 
 int flexADC4 = 0; 
-int sensorMin4 = 3600; 
-int sensorMax4 = 4095;
+int sensorMin4 = 1060; 
+int sensorMax4 = 1300;
 
 int FLEX_PIN5 = 25; 
 int flexADC5 = 0; 
-int sensorMin5 = 3550; 
-int sensorMax5 = 4095;
+int sensorMin5 = 1540; 
+int sensorMax5 = 1760;
 
 
 void setup() 
 {
 SerialBT.begin("Sign language"); //Bluetooth device name
-Serial.begin(9600);
+Serial.begin(115200);
 // while (!Serial) 
 // {
 // ; // wait for serial port to connect. Needed for native USB port only
@@ -186,37 +186,37 @@ Serial.print(" yadc: ");
 Serial.println(yadc);
 
 
-if((angle1>=70)&&(angle2<=80)&&(angle3>=50)&&(angle4>=65)&&(angle5>=45))
+if((angle1>=50)&&(angle2<=50)&&(angle3<=30)&&(angle4<=30)&&(angle5<=50))
 printfun('A');
 
-if((angle1>=70)&&(angle2>=70)&&(angle3<=70)&&(angle4>=50)&&(angle5>=45))
+if((angle1>=50)&&(angle2>=50)&&(angle3>=50)&&(angle4<=50)&&(angle5<=45))
 printfun('B');
 
-if((angle1>=70)&&(angle2>=70)&&(angle3>=70)&&(angle4<=40)&&(angle5>=70))
+if((angle1>=50)&&(angle2>=50)&&(angle3<=50)&&(angle4>=50)&&(angle5<=50))
 printfun('C');
 
-if((angle1>=70)&&(angle2>=70)&&(angle3>=70)&&(angle4>=40)&&(angle5<=60))
+if((angle1>=50)&&(angle2>=50)&&(angle3<=50)&&(angle4<=40)&&(angle5>=25))
 printfun('D');
 
-if((angle1>=50)&&(angle2<=70)&&(angle3<=60)&&(angle4<=50)&&(angle5<=60))
-printfun('\t');
+// if((angle1>=50)&&(angle2<=70)&&(angle3<=60)&&(angle4<=50)&&(angle5<=60))
+// printfun('\t');
 
-if((angle1>=70)&&(angle2>=70)&&(angle3<=60)&&(angle4<=65)&&(angle5<=60)&&(yadc>=160)){
-printfun('E');
-printfun('x');
-printfun('c');
-printfun('u');
-printfun('s');
-printfun('e');
-printfun('\t');
-printfun('m');
-printfun('e');
-printfun('\n');
-} else if((angle1>=70)&&(angle2>=70)&&(angle3>=60)&&(angle4>=60)&&(angle5>=45)&&(yadc>=160)){
-printfun('H');
-printfun('i');
-printfun('\n');
-}
+// if((angle1>=70)&&(angle2>=70)&&(angle3<=60)&&(angle4<=65)&&(angle5<=60)&&(yadc>=160)){
+// printfun('E');
+// printfun('x');
+// printfun('c');
+// printfun('u');
+// printfun('s');
+// printfun('e');
+// printfun('\t');
+// printfun('m');
+// printfun('e');
+// printfun('\n');
+// } else if((angle1>=70)&&(angle2>=70)&&(angle3>=60)&&(angle4>=60)&&(angle5>=45)&&(yadc>=160)){
+// printfun('H');
+// printfun('i');
+// printfun('\n');
+// }
 
 // if(((angle1>=70)&&(angle1<=82))&&((angle2>=77)&&(angle2<=95))&&((angle3>=70)&&(angle3<=86))&&((angle4>=73)&&(angle4<=85))&&((angle5>=0)&&(angle5<=45)))
 // printfun('A');
